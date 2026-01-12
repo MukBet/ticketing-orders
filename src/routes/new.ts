@@ -48,7 +48,7 @@ router.post(
 
     // Publish an event saying that an order was created
 
-    res.status(201).send({});
+    res.status(201).send(order);
   }
 );
 
