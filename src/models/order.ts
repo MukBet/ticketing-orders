@@ -1,7 +1,7 @@
 
 import mongoose from 'mongoose';
 import { OrderStatus } from '@motway_ticketing/common';
-import { TicketDoc } from './tickets';
+import { TicketDoc } from './ticket';
 
 export { OrderStatus }
 
@@ -17,6 +17,7 @@ interface OrderDoc extends mongoose.Document {
   status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
+  version: number;
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -53,6 +54,8 @@ const orderSchema = new mongoose.Schema(
     }
   }
 );
+
+
 
 orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order(attrs);

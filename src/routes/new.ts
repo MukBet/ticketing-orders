@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { body } from 'express-validator';
 import { validateRequest, requireAuth, NotFoundError, OrderStatus, BadRequestError } from '@motway_ticketing/common';
-import { Ticket } from '../models/tickets';
+import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
@@ -51,6 +51,7 @@ router.post(
     // Publish an event saying that an order was created
     await new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: order.version,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),

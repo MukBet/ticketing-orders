@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from '../../app';
 import mongoose from "mongoose";
 import { Order, OrderStatus } from "../../models/order";
-import { Ticket } from "../../models/tickets";
+import { Ticket } from "../../models/ticket";
 
 it('fetchs an order', async () => {
   const ticket = Ticket.build({

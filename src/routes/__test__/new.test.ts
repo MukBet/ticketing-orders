@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from '../../app';
 import mongoose from "mongoose";
 import { Order, OrderStatus } from "../../models/order";
-import { Ticket } from "../../models/tickets";
+import { Ticket } from "../../models/ticket";
 import { natsWrapper } from "../../nats-wrapper";
 
 it('returns an error if the ticket does not exists', async () => {
